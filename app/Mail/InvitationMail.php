@@ -12,13 +12,20 @@ use Illuminate\Queue\SerializesModels;
 class InvitationMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $details;
+
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
+    }
+    public function build()
+    {
+        return $this->markdown('emails.InvitationMail')
+        ->with('details', $this->details);
     }
 
     /**
@@ -27,7 +34,7 @@ class InvitationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Invitation Mail',
+            subject: 'Invitation Mail - '.env('APP_NAME'),
         );
     }
 

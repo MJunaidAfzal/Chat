@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Invitation;
+use App\Mail\InvitationMail;
+use Mail;
+
 
 class InvitationController extends Controller
 {
@@ -21,7 +24,13 @@ class InvitationController extends Controller
             'email' => $request->email,
             'message' => $request->message,
         ]);
-
+        $myEmail = 'abdulwahabkhalid29@gmail.com';
+        $details = [
+            'email' => $request->email,
+            'name' => $request->name,
+            'message' => $request->message,
+        ];
+        Mail::to($myEmail)->send(new InvitationMail($details));
         if(!empty($store->id)){
             return redirect()->back()->with('success','Invitation going Successfully');
         }
