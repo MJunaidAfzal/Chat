@@ -5,7 +5,6 @@
 @section('content')
 
         <div class="layout-wrapper d-lg-flex">
-
             <!-- Start left sidebar-menu -->
             <div class="side-menu flex-lg-column">
                 <!-- LOGO -->
@@ -71,7 +70,12 @@
                                 <a class="dropdown-item d-flex align-items-center justify-content-between" id="pills-setting-tab" data-bs-toggle="pill" href="#pills-setting" role="tab">Setting <i class="bx bx-cog text-muted ms-1"></i></a>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between" href="auth-changepassword.html">Change Password <i class="bx bx-lock-open text-muted ms-1"></i></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="auth-logout.html">Log out <i class="bx bx-log-out-circle text-muted ms-1"></i></a>
+                                <a href="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item d-flex align-items-center justify-content-between" href="auth-logout.html">Log out <i class="bx bx-log-out-circle text-muted ms-1"></i>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                     </form>
+                                </a>
+
                             </div>
                         </li>
                     </ul>
@@ -2209,7 +2213,7 @@
                             </button>
                         </div>
                         <div class="modal-body p-4">
-                            <form action="{{ route('invite-store') }}" method="POST">
+                                <form action="{{ route('invite-store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <div class="mb-3">
