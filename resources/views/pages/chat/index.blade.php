@@ -2209,25 +2209,29 @@
                             </button>
                         </div>
                         <div class="modal-body p-4">
-                            <form>
+                            <form action="{{ route('invite-store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <div class="mb-3">
                                     <label for="addcontactemail-input" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="addcontactemail-input" placeholder="Enter Email">
+                                    <input name="email" type="email" class="form-control" id="addcontactemail-input" placeholder="Enter Email">
+									<small class="text-danger">@error ('email') {{ $message }} @enderror</small>
                                 </div>
                                 <div class="mb-3">
                                     <label for="addcontactname-input" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="addcontactname-input" placeholder="Enter Name">
+                                    <input name="name" type="text" class="form-control" id="addcontactname-input" placeholder="Enter Name">
+									<small class="text-danger">@error ('name') {{ $message }} @enderror</small>
                                 </div>
                                 <div class="mb-0">
                                     <label for="addcontact-invitemessage-input" class="form-label">Invatation Message</label>
-                                    <textarea class="form-control" id="addcontact-invitemessage-input" rows="3" placeholder="Enter Message"></textarea>
+                                    <textarea name="message" class="form-control" id="addcontact-invitemessage-input" rows="3" placeholder="Enter Message"></textarea>
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Invite</button>
+                            <button type="submit" class="btn btn-primary">Invite</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
