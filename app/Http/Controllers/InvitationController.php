@@ -24,7 +24,7 @@ class InvitationController extends Controller
             'email' => $request->email,
             'message' => $request->message,
         ]);
-        $myEmail = 'abdulwahabkhalid29@gmail.com';
+        $myEmail = 'junaidafzal395@gmail.com';
         $details = [
             'email' => $request->email,
             'name' => $request->name,

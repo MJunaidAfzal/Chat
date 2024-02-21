@@ -2229,6 +2229,7 @@
                                 <div class="mb-0">
                                     <label for="addcontact-invitemessage-input" class="form-label">Invatation Message</label>
                                     <textarea name="message" class="form-control" id="addcontact-invitemessage-input" rows="3" placeholder="Enter Message"></textarea>
+									<small class="text-danger">@error ('message') {{ $message }} @enderror</small>
                                 </div>
                         </div>
                         <div class="modal-footer">
