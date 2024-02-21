@@ -2212,9 +2212,15 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
+                        @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                         <div class="modal-body p-4">
                                 <form action="{{ route('invite-store') }}" method="POST">
                                 @csrf
+
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <div class="mb-3">
                                     <label for="addcontactemail-input" class="form-label">Email</label>
